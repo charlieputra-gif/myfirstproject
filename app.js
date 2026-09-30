@@ -1,9 +1,10 @@
 /**
  * CODINGHAX — Application Logic
  * Modular implementation containing:
- * 1. Step-by-Step Wizard Flow Controller
+ * 1. Step-by-Step Wizard Flow Controller with 2.5s Thinking/Loading State
  * 2. Solution Generation Engine
- * 3. Interactive "Hacker Typer" Easter Egg Mode
+ * 3. Navigation & About Us Modal Handlers
+ * 4. Interactive "Hacker Typer" Easter Egg Mode (Restricted strictly to the "Hax" <span>)
  */
 
 // ============================================================================
@@ -32,6 +33,8 @@ const DOM = {
     document.getElementById("step-2"),
     document.getElementById("step-3")
   ],
+  wizardLoader: document.getElementById("wizard-loader"),
+  loaderStatus: document.getElementById("loader-status"),
 
   // Step 1 Elements
   userIdea: document.getElementById("user-idea"),
@@ -55,10 +58,16 @@ const DOM = {
   btnStartOver: document.getElementById("btn-start-over"),
   toast: document.getElementById("toast"),
 
-  // Easter Egg Elements
-  appTitle: document.getElementById("app-title"),
+  // Easter Egg Elements (Restricted strictly to the "Hax" span)
+  haxTrigger: document.getElementById("hax-trigger"),
   hackerTerminal: document.getElementById("hacker-terminal"),
-  hackerCodeOutput: document.getElementById("hacker-code-output")
+  hackerCodeOutput: document.getElementById("hacker-code-output"),
+
+  // About Modal & Menu Elements
+  navBtnHome: document.getElementById("nav-btn-home"),
+  navBtnAbout: document.getElementById("nav-btn-about"),
+  aboutModal: document.getElementById("about-modal"),
+  btnCloseAbout: document.getElementById("btn-close-about")
 };
 
 /**
@@ -91,14 +100,13 @@ function initWizard() {
     goToStep(1);
   });
 
-  // Step 2 -> Step 3 (Generate)
+  // Step 2 -> Loading State -> Step 3 (2.5s Thinking Delay)
   DOM.btnGenerate.addEventListener("click", () => {
     wizardState.language = DOM.configLang.value;
     wizardState.level = DOM.configLevel.value;
     wizardState.style = DOM.configStyle.value;
 
-    generateSolution();
-    goToStep(3);
+    triggerLoadingTransition();
   });
 
   // Step 3 -> Step 2
@@ -106,7 +114,7 @@ function initWizard() {
     goToStep(2);
   });
 
-  // Step 3 -> Reset
+  // Step 3 -> Reset back to Step 1
   DOM.btnStartOver.addEventListener("click", () => {
     DOM.userIdea.value = "";
     wizardState.idea = "";
@@ -136,10 +144,43 @@ function initWizard() {
 }
 
 /**
+ * Triggers the 2.5-second intermediate thinking/loading screen before showing Step 3
+ */
+function triggerLoadingTransition() {
+  // Hide all step cards
+  DOM.stepCards.forEach(card => card.classList.remove("active"));
+
+  // Show loading card
+  DOM.wizardLoader.classList.add("active");
+  DOM.loaderStatus.textContent = "Analyzing requirements & generating optimal code structure...";
+  DOM.progressBar.style.width = "75%";
+
+  // Intermediate status text update at 1.2s
+  setTimeout(() => {
+    DOM.loaderStatus.textContent = "Synthesizing clean functions and architectural notes...";
+  }, 1200);
+
+  // Complete synthesis after 2.5s
+  setTimeout(() => {
+    // Generate code
+    generateSolution();
+
+    // Hide loader
+    DOM.wizardLoader.classList.remove("active");
+
+    // Display Step 3
+    goToStep(3);
+  }, 2500);
+}
+
+/**
  * Navigates to a specific wizard step (1, 2, or 3)
  */
 function goToStep(stepNumber) {
   wizardState.currentStep = stepNumber;
+
+  // Ensure loader is hidden
+  DOM.wizardLoader.classList.remove("active");
 
   // Toggle active card
   DOM.stepCards.forEach((card, idx) => {
@@ -193,7 +234,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// In-Memory store for quick execution
+// In-Memory store for fast, lightweight execution
 const items = new Map();
 
 /**
@@ -307,7 +348,44 @@ function showToast(message) {
 }
 
 // ============================================================================
-// MODULE 3: HACKER TYPER EASTER EGG
+// MODULE 3: NAVIGATION MENU & ABOUT US MODAL
+// ============================================================================
+
+function initNavigation() {
+  // Home Link
+  DOM.navBtnHome.addEventListener("click", () => {
+    DOM.navBtnHome.classList.add("active");
+    DOM.navBtnAbout.classList.remove("active");
+    goToStep(1);
+  });
+
+  // About Us Link
+  DOM.navBtnAbout.addEventListener("click", () => {
+    DOM.aboutModal.classList.add("open");
+  });
+
+  // Close About Modal Button
+  DOM.btnCloseAbout.addEventListener("click", () => {
+    DOM.aboutModal.classList.remove("open");
+  });
+
+  // Close when clicking modal backdrop
+  DOM.aboutModal.addEventListener("click", (e) => {
+    if (e.target === DOM.aboutModal) {
+      DOM.aboutModal.classList.remove("open");
+    }
+  });
+
+  // Close with Escape key if modal is open
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && DOM.aboutModal.classList.contains("open")) {
+      DOM.aboutModal.classList.remove("open");
+    }
+  });
+}
+
+// ============================================================================
+// MODULE 4: HACKER TYPER EASTER EGG (Triggered ONLY by <span>Hax</span>)
 // ============================================================================
 
 const FAKE_HACKER_CODE = `
@@ -356,11 +434,12 @@ let isHackerModeActive = false;
 let hackerCodeIndex = 0;
 
 /**
- * Initializes the Easter Egg listeners
+ * Initializes the Easter Egg listeners isolated exclusively to the #hax-trigger span
  */
 function initHackerEasterEgg() {
-  // Trigger on 3 rapid clicks on the main brand title
-  DOM.appTitle.addEventListener("click", () => {
+  // Trigger ONLY on 3 rapid clicks on the <span>Hax</span> element
+  DOM.haxTrigger.addEventListener("click", (e) => {
+    e.stopPropagation(); // Prevent any parent event triggering
     hackerClickCount++;
     clearTimeout(hackerClickTimer);
 
@@ -422,5 +501,6 @@ function deactivateHackerMode() {
 // ============================================================================
 document.addEventListener("DOMContentLoaded", () => {
   initWizard();
+  initNavigation();
   initHackerEasterEgg();
 });

@@ -11,15 +11,21 @@
 </head>
 <body>
 
-  <!-- Main Application Header -->
+  <!-- Main Application Header with Navigation Menu -->
   <header class="navbar">
     <div class="navbar-container">
       <div class="brand">
-        <!-- Interactive Easter Egg Trigger: Click 3 times rapidly -->
-        <h1 id="app-title" class="brand-title" title="Triple-click for a surprise!">Coding<span>Hax</span></h1>
+        <!-- Easter Egg is isolated strictly to the <span> tag below -->
+        <h1 class="brand-title">Coding<span id="hax-trigger" title="Triple-click for a surprise!">Hax</span></h1>
         <span class="brand-badge">Simple Wizard</span>
       </div>
       <p class="brand-tagline">Minimalist step-by-step code and solution generator</p>
+
+      <!-- Navigation Menu -->
+      <nav class="nav-menu">
+        <button type="button" class="nav-link active" id="nav-btn-home">Home</button>
+        <button type="button" class="nav-link" id="nav-btn-about">About Us</button>
+      </nav>
     </div>
   </header>
 
@@ -111,7 +117,7 @@
         <div class="form-group">
           <label for="config-level" class="input-label">Target Level:</label>
           <select id="config-level" class="select-input">
-            <option value="Beginner Friendly (Clear & Commented)">Beginner Friendly (Well Commented)</option>
+            <option value="Beginner Friendly (Well Commented)">Beginner Friendly (Well Commented)</option>
             <option value="Clean Production Grade" selected>Clean Production Grade</option>
             <option value="High Performance / Architecture">High Performance / Architecture</option>
           </select>
@@ -131,6 +137,18 @@
       <div class="card-footer">
         <button type="button" class="btn btn-secondary" id="btn-back-to-1">&larr; Back</button>
         <button type="button" class="btn btn-primary" id="btn-generate">Generate CodingHax &rarr;</button>
+      </div>
+    </section>
+
+    <!-- INTERMEDIATE: Thinking / Loading State Card -->
+    <section class="wizard-card step-card" id="wizard-loader">
+      <div class="loader-content">
+        <div class="loader-spinner"></div>
+        <h3 class="loader-title">Synthesizing custom solution...</h3>
+        <p class="loader-subtitle" id="loader-status">Analyzing requirements & generating optimal code structure...</p>
+        <div class="loader-pulse-bar">
+          <div class="loader-pulse-fill"></div>
+        </div>
       </div>
     </section>
 
@@ -163,6 +181,36 @@
     </section>
 
   </main>
+
+  <!-- About Us Modal -->
+  <div class="modal-backdrop" id="about-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">About CodingHax</h3>
+        <button type="button" class="btn-close-modal" id="btn-close-about">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="about-tribute">
+          <div class="tribute-badge">✨ Credits & Special Thanks</div>
+          <p class="about-lead">CodingHax was built with passion for clean, effortless, and distraction-free developer tooling.</p>
+          
+          <div class="tribute-cards">
+            <div class="tribute-box">
+              <span class="tribute-role">Project Visionary & Creator</span>
+              <h4 class="tribute-name">Thanks to You!</h4>
+              <p class="tribute-desc">For envisioning a minimalist, lightning-fast developer experience that puts simplicity and delight first.</p>
+            </div>
+
+            <div class="tribute-box">
+              <span class="tribute-role">AI Pair Programmer</span>
+              <h4 class="tribute-name">Thanks to Antigravity!</h4>
+              <p class="tribute-desc">Designed by Google DeepMind's Advanced Agentic Coding team, co-architecting and refining every line of code.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Interactive Hacker Typer Easter Egg Full-Screen Overlay -->
   <div id="hacker-terminal" class="hacker-terminal hidden" aria-hidden="true">
