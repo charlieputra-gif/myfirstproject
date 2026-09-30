@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROMPTIQUE AI — Precision Prompt Engineering Studio</title>
+  <meta name="description" content="Transform raw, unstructured ideas into ultimate, highest-performing AI prompts with structured XML frameworks, rigorous constraints, and chain-of-thought logic.">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+  <!-- Modern Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="ambient-glow glow-top-left"></div>
+  <div class="ambient-glow glow-bottom-right"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <div class="brand-logo-wrapper">
+          <img src="assets/logo.jpg" alt="Promptique Logo" class="brand-logo">
+          <div class="logo-pulse"></div>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title-row">
+            <h1 class="brand-name">PROMPTIQUE</h1>
+            <span class="badge badge-primary">v2.5 CORE</span>
+            <span class="badge badge-outline">XML ARCHITECT</span>
+          </div>
+          <p class="brand-tagline">Precision AI Prompt Engineering Studio</p>
+        </div>
+      </div>
+
+      <nav class="header-actions">
+        <button id="btn-guide" class="btn btn-ghost" title="Framework Guide">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <span>Framework Guide</span>
+        </button>
+        <button id="btn-history" class="btn btn-ghost" title="Prompt Library">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span>Library (<span id="saved-count">0</span>)</span>
+        </button>
+        <button id="btn-settings" class="btn btn-secondary" title="Configure AI Engine">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <span id="engine-status-label">Engine: Smart Heuristic</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-wrapper">
+    <!-- Hero / Inspiration Bar -->
+    <section class="hero-bar">
+      <div class="hero-content">
+        <div class="hero-heading-group">
+          <span class="hero-chip">✨ Raw Idea ➔ Master AI Blueprint</span>
+          <h2 class="hero-headline">Engineer the Ultimate, Highest-Performing AI Prompts</h2>
+          <p class="hero-subtext">Eliminate AI hallucinations, vague responses, and conversational drift. Elevate rough thoughts into structured, XML-encapsulated instructions with defined roles, context, boundaries, and chain-of-thought logic.</p>
+        </div>
+      </div>
+
+      <!-- Quick Template Starters -->
+      <div class="starter-bar">
+        <span class="starter-label">Quick Ideas:</span>
+        <div class="starter-chips-scroll" id="starter-chips">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Engineering Studio Workspace (Split View) -->
+    <section class="studio-grid">
+      <!-- Left Column: Raw Idea & Engineering Parameters -->
+      <div class="studio-panel panel-input">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <div class="panel-icon-circle icon-cyan">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            </div>
+            <div>
+              <h3 class="panel-title">1. Raw, Unstructured Idea</h3>
+              <p class="panel-desc">Paste your rough concept, messy thoughts, or core goal</p>
+            </div>
+          </div>
+          <div class="panel-actions">
+            <button id="btn-random-idea" class="btn-sm btn-ghost" title="Load Random Example Idea">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
+              <span>Sample</span>
+            </button>
+            <button id="btn-clear-input" class="btn-sm btn-ghost" title="Clear Input">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+              <span>Clear</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="input-container">
+          <textarea 
+            id="raw-input" 
+            class="code-textarea" 
+            placeholder="Example: I want an AI to write a high-converting cold email to Series A investors for my B2B SaaS platform that automates invoice reconciliation. Or: Help me debug a memory leak in my Python FastAPI app using Redis..."
+            rows="6"
+            aria-label="Raw Idea Input"
+          ></textarea>
+          <div class="textarea-footer">
+            <span class="char-counter" id="char-count">0 characters</span>
+            <span class="tip-shortcut"><kbd>Ctrl</kbd> + <kbd>Enter</kbd> to engineer</span>
+          </div>
+        </div>
+
+        <!-- Engineering Parameters (Collapsible / Granular) -->
+        <div class="parameters-section">
+          <div class="section-label-row">
+            <h4 class="section-subtitle">2. Engineering Parameters</h4>
+            <span class="badge badge-accent">Auto-Tuned by Default</span>
+          </div>
+
+          <div class="param-grid">
+            <!-- Target Role Archetype -->
+            <div class="param-card">
+              <label for="param-role" class="param-label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                Target Role Archetype
+              </label>
+              <select id="param-role" class="custom-select">
+                <option value="auto" selected>✨ Auto-Detect (Smart Role Match)</option>
+                <option value="Senior Software Architect">Senior Software Architect</option>
+                <option value="Principal Product Strategist">Principal Product Strategist</option>
+                <option value="Elite Growth Copywriter & Marketer">Elite Growth Copywriter & Marketer</option>
+                <option value="Academic Researcher & Data Scientist">Academic Researcher & Data Scientist</option>
+                <option value="Venture Capital & Financial Analyst">Venture Capital & Financial Analyst</option>
+                <option value="Master Storyteller & Creative Director">Master Storyteller & Creative Director</option>
+                <option value="Executive Communications Advisor">Executive Communications Advisor</option>
+                <option value="Enterprise Security Auditor">Enterprise Security Auditor</option>
+              </select>
+            </div>
+
+            <!-- Target Model Architecture -->
+            <div class="param-card">
+              <label for="param-model" class="param-label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                Target Model Optimization
+              </label>
+              <select id="param-model" class="custom-select">
+                <option value="universal" selected>Universal LLM (Anthropic / OpenAI / Gemini)</option>
+                <option value="claude">Claude 3.5 Sonnet / Opus (XML Optimized)</option>
+                <option value="openai">OpenAI GPT-4o / o1 (High Reasoning)</option>
+                <option value="gemini">Google Gemini 1.5 Pro / Flash (Long Context)</option>
+                <option value="deepseek">DeepSeek R1 / V3 (Chain-of-Thought)</option>
+              </select>
+            </div>
+
+            <!-- Constraint Rigor -->
+            <div class="param-card">
+              <label for="param-rigor" class="param-label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                Constraint Rigor
+              </label>
+              <select id="param-rigor" class="custom-select">
+                <option value="hyper-strict">High Precision (Zero-Fluff, Strict Guardrails)</option>
+                <option value="balanced" selected>Balanced Analytical (Professional Bounds)</option>
+                <option value="exploratory">Exploratory & Nuanced (Broad Lateral Thinking)</option>
+              </select>
+            </div>
+
+            <!-- Output Format Specification -->
+            <div class="param-card">
+              <label for="param-format" class="param-label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                Output Structure Target
+              </label>
+              <select id="param-format" class="custom-select">
+                <option value="auto" selected>✨ Domain Optimal (Tables, Sections & Code)</option>
+                <option value="structured_markdown">Structured Markdown Sections & Bullets</option>
+                <option value="json_schema">Strict JSON Schema / Structured Object</option>
+                <option value="comparative_table">Comparative Markdown Matrix / Table</option>
+                <option value="step_by_step">Numbered Step-by-Step Executable Protocol</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Enhancement Toggles -->
+          <div class="enhancement-chips">
+            <span class="chips-title">Framework Add-ons:</span>
+            <label class="toggle-pill">
+              <input type="checkbox" id="toggle-scratchpad" checked>
+              <span>Forced &lt;scratchpad&gt; Reasoning</span>
+            </label>
+            <label class="toggle-pill">
+              <input type="checkbox" id="toggle-negative-guards" checked>
+              <span>Anti-Hallucination Negative Bounds</span>
+            </label>
+            <label class="toggle-pill">
+              <input type="checkbox" id="toggle-edge-cases" checked>
+              <span>Explicit Edge-Case Handling</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Primary Action Button -->
+        <div class="action-footer">
+          <button id="btn-engineer" class="btn btn-primary btn-large">
+            <span class="btn-spinner" id="btn-spinner"></span>
+            <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <span id="btn-engineer-text">Engineer Master Prompt</span>
+          </button>
+        </div>
+
+        <!-- Telemetry Progress Bar (Hidden during idle) -->
+        <div class="telemetry-bar" id="telemetry-bar" style="display: none;">
+          <div class="telemetry-step" id="telemetry-status">Synthesizing XML Architecture...</div>
+          <div class="telemetry-progress-track">
+            <div class="telemetry-progress-fill" id="telemetry-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Precision Engineered Output -->
+      <div class="studio-panel panel-output">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <div class="panel-icon-circle icon-emerald">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <div>
+              <h3 class="panel-title">Engineered Master Prompt</h3>
+              <p class="panel-desc">5-Pillar XML Standard with crisp welcoming insight</p>
+            </div>
+          </div>
+
+          <!-- View Tabs -->
+          <div class="tab-pill-group">
+            <button class="tab-btn active" data-tab="inspector" id="tab-inspector">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+              <span>XML Inspector</span>
+            </button>
+            <button class="tab-btn" data-tab="markdown" id="tab-markdown">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              <span>Code Block</span>
+            </button>
+            <button class="tab-btn" data-tab="simulator" id="tab-simulator">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              <span>Test Simulator</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Output Views Container -->
+        <div class="output-content-area">
+          <!-- Part 1: Welcoming Insight Banner -->
+          <div class="insight-card" id="insight-banner">
+            <div class="insight-badge">
+              <span class="status-indicator"></span>
+              <span>Welcoming Insight</span>
+            </div>
+            <p class="insight-text" id="insight-text">
+              Enter your raw idea on the left and click "Engineer Master Prompt" to witness the transformation into an optimized, XML-encapsulated AI directive.
+            </p>
+          </div>
+
+          <!-- Empty State Graphic (shown initially) -->
+          <div class="empty-state" id="empty-state">
+            <div class="empty-state-graphic">
+              <img src="assets/banner.jpg" alt="Neural Synthesis Banner" class="banner-preview">
+            </div>
+            <h4 class="empty-title">Ready for Your Idea</h4>
+            <p class="empty-desc">Select a quick idea starter above or paste any rough concept to engineer it into an authoritative, hallucination-resistant prompt.</p>
+          </div>
+
+          <!-- View 1: XML Inspector View (Visual Cards) -->
+          <div class="view-panel" id="view-inspector" style="display: none;">
+            <div class="xml-card xml-role">
+              <div class="xml-card-header">
+                <div class="xml-tag-badge tag-cyan">&lt;role_and_objective&gt;</div>
+                <button class="btn-copy-tag" data-target="content-role" title="Copy Role Tag">Copy</button>
+              </div>
+              <div class="xml-content" id="content-role"></div>
+            </div>
+
+            <div class="xml-card xml-context">
+              <div class="xml-card-header">
+                <div class="xml-tag-badge tag-blue">&lt;context&gt;</div>
+                <button class="btn-copy-tag" data-target="content-context" title="Copy Context Tag">Copy</button>
+              </div>
+              <div class="xml-content" id="content-context"></div>
+            </div>
+
+            <div class="xml-card xml-constraints">
+              <div class="xml-card-header">
+                <div class="xml-tag-badge tag-amber">&lt;rules_and_constraints&gt;</div>
+                <button class="btn-copy-tag" data-target="content-constraints" title="Copy Constraints Tag">Copy</button>
+              </div>
+              <div class="xml-content" id="content-constraints"></div>
+            </div>
+
+            <div class="xml-card xml-format">
+              <div class="xml-card-header">
+                <div class="xml-tag-badge tag-emerald">&lt;formatting_requirements&gt;</div>
+                <button class="btn-copy-tag" data-target="content-format" title="Copy Format Tag">Copy</button>
+              </div>
+              <div class="xml-content" id="content-format"></div>
+            </div>
+
+            <div class="xml-card xml-cot">
+              <div class="xml-card-header">
+                <div class="xml-tag-badge tag-purple">&lt;chain_of_thought&gt;</div>
+                <button class="btn-copy-tag" data-target="content-cot" title="Copy CoT Tag">Copy</button>
+              </div>
+              <div class="xml-content" id="content-cot"></div>
+            </div>
+          </div>
+
+          <!-- View 2: Markdown Code Block View -->
+          <div class="view-panel" id="view-markdown" style="display: none;">
+            <div class="code-preview-wrap">
+              <div class="code-header-bar">
+                <span class="code-lang-label">MARKDOWN PROMPT CODE BLOCK</span>
+                <span class="code-status">Click to copy block</span>
+              </div>
+              <pre class="code-preview"><code id="code-output"></code></pre>
+            </div>
+          </div>
+
+          <!-- View 3: Live Simulator View -->
+          <div class="view-panel" id="view-simulator" style="display: none;">
+            <div class="simulator-card">
+              <div class="sim-header">
+                <div class="sim-title-group">
+                  <span class="sim-dot dot-red"></span>
+                  <span class="sim-dot dot-yellow"></span>
+                  <span class="sim-dot dot-green"></span>
+                  <span class="sim-title">Virtual Execution Sandbox</span>
+                </div>
+                <button id="btn-run-simulation" class="btn-sm btn-primary">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  <span>Simulate AI Response</span>
+                </button>
+              </div>
+
+              <div class="sim-body" id="sim-body">
+                <div class="sim-prompt-banner">
+                  <span class="sim-badge">Loaded Active Prompt</span>
+                  <span class="sim-prompt-name" id="sim-prompt-name">No prompt loaded yet</span>
+                </div>
+
+                <div class="sim-chat-window" id="sim-chat-window">
+                  <div class="sim-bubble sim-bubble-ai">
+                    <div class="bubble-header">
+                      <span class="bubble-author">Target AI Engine</span>
+                      <span class="bubble-tag">Ready</span>
+                    </div>
+                    <p class="bubble-text">Click "Simulate AI Response" to see how a frontier AI model strictly interprets and executes this engineered prompt with step-by-step reasoning.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Output Analytics & Action Bar -->
+        <div class="output-footer">
+          <!-- Metric Badges -->
+          <div class="metrics-row">
+            <div class="metric-pill">
+              <span class="metric-label">Tokens:</span>
+              <span class="metric-val" id="metric-tokens">~0</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-label">Words:</span>
+              <span class="metric-val" id="metric-words">0</span>
+            </div>
+            <div class="metric-pill" title="Prompt Reliability Assessment">
+              <span class="metric-label">Quality Score:</span>
+              <span class="metric-val score-high" id="metric-score">98/100</span>
+            </div>
+          </div>
+
+          <!-- Output Buttons -->
+          <div class="footer-buttons">
+            <button id="btn-copy-code" class="btn btn-primary" title="Copy Prompt in Markdown Code Block">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Copy Prompt Block</span>
+            </button>
+            <button id="btn-copy-full" class="btn btn-secondary" title="Copy Insight + Prompt">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+              <span>Copy Full Output</span>
+            </button>
+            <button id="btn-save-library" class="btn btn-ghost" title="Save to Prompt Library">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+              <span>Save</span>
+            </button>
+            <button id="btn-download" class="btn btn-ghost" title="Download as .md file">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Download</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deep Dive Framework Breakdown Section -->
+    <section class="framework-showcase">
+      <div class="showcase-header">
+        <span class="showcase-badge">THE 5-PILLAR ARCHITECTURE</span>
+        <h3 class="showcase-title">Why Engineered XML Prompts Outperform Conversational Prompts</h3>
+        <p class="showcase-desc">Modern frontier LLMs (Claude 3.5, GPT-4o, Gemini 1.5, DeepSeek R1) are trained extensively on structured XML tags. Tags create unambiguous semantic walls, preventing prompt injection, hallucination, and instruction fading.</p>
+      </div>
+
+      <div class="framework-grid">
+        <div class="pillar-card pillar-cyan">
+          <div class="pillar-header">
+            <span class="pillar-tag">&lt;role_and_objective&gt;</span>
+            <span class="pillar-num">01</span>
+          </div>
+          <h4 class="pillar-title">Crystalline Identity</h4>
+          <p class="pillar-text">Anchors the AI into a seasoned domain persona with an absolute single-point objective. Eradicates ambiguous generic responses.</p>
+        </div>
+
+        <div class="pillar-card pillar-blue">
+          <div class="pillar-header">
+            <span class="pillar-tag">&lt;context&gt;</span>
+            <span class="pillar-num">02</span>
+          </div>
+          <h4 class="pillar-title">Deep Situational Grounding</h4>
+          <p class="pillar-text">Supplies rich domain background, target audience characteristics, environmental stakes, and prior state knowledge.</p>
+        </div>
+
+        <div class="pillar-card pillar-amber">
+          <div class="pillar-header">
+            <span class="pillar-tag">&lt;rules_and_constraints&gt;</span>
+            <span class="pillar-num">03</span>
+          </div>
+          <h4 class="pillar-title">Ironclad Boundaries</h4>
+          <p class="pillar-text">Negative constraints and non-negotiable boundaries. Forcing constraints is the #1 highest-leverage technique for zero-hallucination reliability.</p>
+        </div>
+
+        <div class="pillar-card pillar-emerald">
+          <div class="pillar-header">
+            <span class="pillar-tag">&lt;formatting_requirements&gt;</span>
+            <span class="pillar-num">04</span>
+          </div>
+          <h4 class="pillar-title">Structural Determinism</h4>
+          <p class="pillar-text">Commands exact output syntax (e.g. 3-column markdown tables, strict JSON, bold executive bullet points) for instant downstream consumption.</p>
+        </div>
+
+        <div class="pillar-card pillar-purple">
+          <div class="pillar-header">
+            <span class="pillar-tag">&lt;chain_of_thought&gt;</span>
+            <span class="pillar-num">05</span>
+          </div>
+          <h4 class="pillar-title">Forced Cognitive Reasoning</h4>
+          <p class="pillar-text">Mandates internal reasoning in a &lt;scratchpad&gt; before outputting final answers, boosting complex problem solving and accuracy by up to 40%.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal: Framework Guide & Best Practices -->
+  <div class="modal-backdrop" id="modal-guide">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <div class="panel-icon-circle icon-cyan">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+          </div>
+          <div>
+            <h3 class="modal-title">Prompt Engineering Blueprint</h3>
+            <p class="modal-subtitle">The science of high-precision LLM steering</p>
+          </div>
+        </div>
+        <button class="btn-modal-close" data-close="modal-guide">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="guide-comparison">
+          <div class="comparison-col col-bad">
+            <div class="comp-header">❌ Amateur Conversational Prompt</div>
+            <div class="comp-box">
+              "Write a cold email to investors asking for money for my SaaS. Make it convincing and professional."
+            </div>
+            <ul class="comp-list">
+              <li>High hallucination risk</li>
+              <li>Generic clichéd phrases ("I hope this finds you well")</li>
+              <li>No bounds or measurable goals</li>
+            </ul>
+          </div>
+          <div class="comparison-col col-good">
+            <div class="comp-header">✅ Engineered Master Prompt</div>
+            <div class="comp-box">
+              <code>&lt;role_and_objective&gt;...&lt;/role_and_objective&gt;<br>&lt;rules_and_constraints&gt;...&lt;/rules_and_constraints&gt;<br>&lt;chain_of_thought&gt;...&lt;/chain_of_thought&gt;</code>
+            </div>
+            <ul class="comp-list">
+              <li>Role anchored to Tier-1 SaaS Advisor</li>
+              <li>Strict 150-word cap & ban on corporate fluff</li>
+              <li>Pre-computation scratchpad for investor psychology</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Prompt Library / History Drawer -->
+  <div class="modal-backdrop" id="modal-history">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <div class="panel-icon-circle icon-emerald">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          </div>
+          <div>
+            <h3 class="modal-title">Prompt Library & History</h3>
+            <p class="modal-subtitle">Locally preserved engineered blueprints</p>
+          </div>
+        </div>
+        <button class="btn-modal-close" data-close="modal-history">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="library-search-bar">
+          <input type="text" id="library-search" class="search-input" placeholder="Search saved prompts by keyword...">
+          <button id="btn-clear-history" class="btn-sm btn-ghost">Clear All</button>
+        </div>
+        <div class="library-list" id="library-list">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: API Settings -->
+  <div class="modal-backdrop" id="modal-settings">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <div class="panel-icon-circle icon-purple">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          </div>
+          <div>
+            <h3 class="modal-title">AI Engine Settings</h3>
+            <p class="modal-subtitle">Choose between Offline Smart Engine or Direct Cloud LLM API</p>
+          </div>
+        </div>
+        <button class="btn-modal-close" data-close="modal-settings">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="settings-engine-selector">
+          <label class="radio-card">
+            <input type="radio" name="engine-type" value="offline" checked id="engine-offline">
+            <div class="radio-card-body">
+              <div class="radio-header">
+                <strong>Offline Smart Heuristic Engine (Default)</strong>
+                <span class="badge badge-accent">Instant & Free</span>
+              </div>
+              <p class="radio-desc">Generates complete 5-pillar XML architectures offline in your browser using structured NLP logic with zero latency or token fees.</p>
+            </div>
+          </label>
+
+          <label class="radio-card">
+            <input type="radio" name="engine-type" value="gemini" id="engine-gemini">
+            <div class="radio-card-body">
+              <div class="radio-header">
+                <strong>Google Gemini 1.5 API (Live Cloud)</strong>
+                <span class="badge badge-outline">Custom Key</span>
+              </div>
+              <p class="radio-desc">Connect directly to Google's official Gemini API endpoint for live frontier intelligence.</p>
+            </div>
+          </label>
+
+          <label class="radio-card">
+            <input type="radio" name="engine-type" value="openai" id="engine-openai">
+            <div class="radio-card-body">
+              <div class="radio-header">
+                <strong>OpenAI API / Compatible (Live Cloud)</strong>
+                <span class="badge badge-outline">Custom Key</span>
+              </div>
+              <p class="radio-desc">Connect directly to OpenAI GPT-4o / OpenRouter / Groq API.</p>
+            </div>
+          </label>
+        </div>
+
+        <div class="settings-api-key-box" id="api-key-box" style="display: none;">
+          <label for="input-api-key" class="param-label">API Key</label>
+          <input type="password" id="input-api-key" class="custom-input" placeholder="Paste your API key here (saved securely in localStorage only)">
+          <small class="settings-hint">Your key is never sent to our servers. All calls happen client-side directly to the AI provider.</small>
+        </div>
+
+        <div class="settings-footer">
+          <button id="btn-save-settings" class="btn btn-primary">Save Engine Settings</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <span class="footer-brand">PROMPTIQUE AI</span>
+        <span class="footer-sep">•</span>
+        <span>The Standard for Enterprise Prompt Architecture</span>
+      </div>
+      <div class="footer-right">
+        <span class="badge-tag">Role</span>
+        <span class="badge-tag">Context</span>
+        <span class="badge-tag">Constraints</span>
+        <span class="badge-tag">Formatting</span>
+        <span class="badge-tag">Chain-of-Thought</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "promptique-ai",
+  "version": "1.0.0",
+  "description": "Premium Minimalist Prompt Engineering Application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "prompt-engineering",
+    "ai",
+    "xml-prompts",
+    "llm-optimizer"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}
