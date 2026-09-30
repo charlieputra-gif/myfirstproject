@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "login": "firebase login",
-    "deploy": "firebase deploy"
+    "login": "npx firebase login",
+    "deploy": "npx firebase deploy"
   },
   "keywords": [
     "codinghax",
